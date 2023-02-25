@@ -15,7 +15,7 @@ void myTaskMenu()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("--------------------------------------------------------------------");
-    Console.WriteLine("Представлены решения задач 47, 50 и 52");
+    Console.WriteLine("Представлены решения задач 64, 66 и 68");
     Console.WriteLine("Введите номер задачи(либо q/Q для выхода):");
     Console.WriteLine("--------------------------------------------------------------------");
     for(int i=1; i <=5; i++) Console.WriteLine();
@@ -25,13 +25,13 @@ void myTaskMenu()
     selNum = Console.ReadLine();
         switch(selNum)
         {
-            case "47":
+            case "64":
             {
                 Console.Write($"Выбрано : Задача {selNum}");
                 Console.Clear(); 
                 Console.WriteLine();
                 
-                Task_47();
+                Task_64();
                 
                 selNum = "";
                 Console.Clear(); 
@@ -42,24 +42,24 @@ void myTaskMenu()
 
             case "50":
             {    Console.WriteLine($"Выбрано : Задача {selNum}");
-                Task_50();
+                // Task_50();
 
-                selNum = "";
+                // selNum = "";
 
-                Console.Clear(); 
-                for(int i = 1; i <= 3; i++) Console.WriteLine();
+                // Console.Clear(); 
+                // for(int i = 1; i <= 3; i++) Console.WriteLine();
             
                 break;
             }
             
              case "52":
             {    Console.WriteLine($"Выбрано : Задача {selNum}");
-                Task_52();
+                // Task_52();
 
-                selNum = "";
+                // selNum = "";
 
-                Console.Clear(); 
-                for(int i = 1; i <= 3; i++) Console.WriteLine();
+                // Console.Clear(); 
+                // for(int i = 1; i <= 3; i++) Console.WriteLine();
             
                 break;
             }
@@ -163,73 +163,22 @@ void Task_47()
     PauseString();
 }
 
-//==== Задача 50 =================================================================================================================
-//Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
-//и возвращает значение этого элемента или же указание, что такого элемента нет. 
-void Task_50()
+//==== Задача 64 =================================================================================================================
+//Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
+//N = 5 -> "5, 4, 3, 2, 1"
+//N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
+
+void Task_64();
 {
-    int rCount = 3;
-    int cCount = 4;
-    double[,] array = makeArray(rCount, cCount);
-    int rowNumber;
-    int columnNumber;
-    int indexNum=0;
-    bool onceMore=true;
+    // Собрать строку с числами от a до b, a <= b
 
-    Console.Clear();
+int n = IntInput("N");
 
+Console.Clear();
 
-    Console.WriteLine("Представлен массив размером 3 х 4.");
-    
-    printArray(array);
-    Console.WriteLine("Введите индекс элемента как двузначное число, первая цифра - строка, вторая - колонка");
-    indexNum = IntInput("");
-    while (indexNum<10 && indexNum>=100)
-    {
-        Console.WriteLine($"indexNum = {indexNum}");
-        Console.WriteLine($"Введенное число {indexNum} не является двузначным.");
-        Console.WriteLine("Некрасиво вышло. Еще разок?");
-    }
+Console.WriteLine(NumbersRec(1, n)); // 1 2 3 4 5 6 7 8 9 10
 
-    rowNumber = indexNum / 10;
-    columnNumber = indexNum % 10;
-    
-    if (rowNumber>rCount || columnNumber>cCount)
-    {
-        Console.WriteLine("Да нет тут такого индекса");
-    }
-    else
-    {
-        printArray(array);
-        Console.WriteLine();
-        Console.WriteLine($" Значение элемента массива в строке {rowNumber} и колонке {columnNumber} равно {array[rowNumber-1,columnNumber-1]}");
-        Console.WriteLine();
-    }
-
-    PauseString();
-}
-
-void Task_52()
-{
-    int rCount = 3;
-    int cCount = 3;
-    double sumInColumn;
-    double[,] array = makeArray(rCount, cCount);
-    Console.WriteLine();
-    printArray(array);
-    for (int j = 0; j < cCount; j++)
-    {
-        sumInColumn = 0;
-
-        for (int i = 0; i < rCount; i++)
-        {
-            sumInColumn = sumInColumn + array[i,j];
-        }
-        string stringRes = string.Format("{0:f2}", sumInColumn/rCount);
-        
-        Console.WriteLine("Среднее арифметическое колонки " + (j+1) + " равно " + stringRes);
-    }
-     PauseString();
+Console.WriteLine();
 }
 
 void PauseString()
@@ -238,5 +187,13 @@ void PauseString()
     Console.ReadLine();
 }
 
-    myTaskMenu();
+string NumbersRec(int a, int b) // тот же метод, но рекурсивный
+{
+if (a <= b) return $"{a} " + NumbersRec(1, b);
+else return String.Empty;
+}
+
+
+   // myTaskMenu();
+   Task_64();
 
