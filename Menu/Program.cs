@@ -29,38 +29,49 @@ void myTaskMenu()
             {
                 Console.Write($"Выбрано : Задача {selNum}");
                 Console.Clear(); 
+                selNum = "";
+                Console.Clear(); 
                 Console.WriteLine();
+                selNum = "";
                 
                 Task_64();
                 
                 selNum = "";
                 Console.Clear(); 
                 for(int i = 1; i <= 3; i++) Console.WriteLine();
+
+                PauseString();
                             
                 break;
             }
 
-            case "50":
-            {    Console.WriteLine($"Выбрано : Задача {selNum}");
-                // Task_50();
+            case "66":
+            {   
+                 Console.Write($"Выбрано : Задача {selNum}");
+                Console.Clear(); 
+                selNum = "";
+                Console.Clear(); 
+                Console.WriteLine();
+                selNum = "";
+                 Task_66();
 
-                // selNum = "";
-
-                // Console.Clear(); 
-                // for(int i = 1; i <= 3; i++) Console.WriteLine();
-            
+                PauseString();
+                 Console.Clear();
                 break;
             }
             
-             case "52":
-            {    Console.WriteLine($"Выбрано : Задача {selNum}");
-                // Task_52();
+             case "68":
+            {     
+                Console.Write($"Выбрано : Задача {selNum}");
+                Console.Clear(); 
+                selNum = "";
+                Console.Clear(); 
+                Console.WriteLine();
+                selNum = "";
+                Task_68();
 
-                // selNum = "";
-
-                // Console.Clear(); 
-                // for(int i = 1; i <= 3; i++) Console.WriteLine();
-            
+                //PauseString();
+                 Console.Clear();
                 break;
             }
 
@@ -94,6 +105,8 @@ void myTaskMenu()
             
         }
     }
+    
+                
 }
 
 //=====================================================================================================================
@@ -153,14 +166,17 @@ void printArray(double[,] arr)
 
 
 
-//==== Задача 47 =================================================================================================================
-// Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
-void Task_47()
-{
-    double[,] array = makeArray(3, 4);
-    printArray(array);
+//==== Задача 66 =================================================================================================================
+// Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
+// M = 1; N = 15 -> 120
+// M = 4; N = 8. -> 30
 
-    PauseString();
+void Task_66()
+{
+    int m = IntInput("M");
+    int n = IntInput("N");
+    Console.WriteLine(NumbersSum(m,n));
+
 }
 
 //==== Задача 64 =================================================================================================================
@@ -168,17 +184,34 @@ void Task_47()
 //N = 5 -> "5, 4, 3, 2, 1"
 //N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
 
-void Task_64();
+
+void Task_64()
 {
-    // Собрать строку с числами от a до b, a <= b
+    // Собрать строку с числами от n до 1
+    int n = IntInput("N");
+    Console.Clear();
+    Console.WriteLine(NumbersRec(1, n)); 
+    Console.WriteLine();
+    Console.ReadLine();
+}
 
-int n = IntInput("N");
+void Task_68()
+{
+    // Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+    //m = 2, n = 3 -> A(m,n) = 9
+    //m = 3, n = 2 -> A(m,n) = 29
 
-Console.Clear();
+int m = IntInput("m");
+int n = IntInput("n");
 
-Console.WriteLine(NumbersRec(1, n)); // 1 2 3 4 5 6 7 8 9 10
+int akk = AkkFunc(m, n);
+Console.WriteLine(akk);
+PauseString();
 
-Console.WriteLine();
+
+    Console.Clear();
+    // Console.WriteLine(NumbersRec(1, n)); 
+    // Console.WriteLine();
 }
 
 void PauseString()
@@ -187,13 +220,41 @@ void PauseString()
     Console.ReadLine();
 }
 
-string NumbersRec(int a, int b) // тот же метод, но рекурсивный
+string NumbersRec(int a, int b) // 
 {
-if (a <= b) return $"{a} " + NumbersRec(1, b);
+if (a <= b) return $"{b} " + NumbersRec(1, b-1);
 else return String.Empty;
 }
 
+int NumbersSum(int n, int m) // 
+{
+int rev = 0;
+if (n <= m) 
+{
+    return n + NumbersSum(n+1, m);
+}
+else 
+{
+    // rev = m;
+    // m = n;
+    // n = rev;
 
-   // myTaskMenu();
-   Task_64();
+    return 0;//n + NumbersSum(n+1, m);
+}
+}
+
+ // функция Аккермана
+int AkkFunc(int n, int m)
+{
+  if (n == 0)
+    return m + 1;
+  else
+    if ((n != 0) && (m == 0))
+      return AkkFunc(n - 1, 1);
+    else
+      return AkkFunc(n - 1, AkkFunc(n, m - 1));
+}
+
+
+   myTaskMenu();
 
